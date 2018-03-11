@@ -183,7 +183,7 @@
 									
 									<a class="back pull-right btn-floating btn-lg red lighten-1 white-text">X</a>
 									<%
-					
+									try {
 						statement = conn.prepareStatement("SELECT content_id,title,section,content,TRIM(LEADING 'C:fakepath' FROM image)as mypath FROM tbl_content WHERE section='Personal Info'  Limit 1");
 						resultSet = statement.executeQuery();
 
@@ -192,13 +192,17 @@
 											<h3 class="mt-3"><%= resultSet.getString("title") %></h3><br>	
 											<p><%= resultSet.getString("content") %></p>
 										
-									<%} %>
+									<%}conn.close();
+									} catch (Exception e) {
+						                e.printStackTrace();
+						            } %>
 									</div>
 									
 									<div class = "tabtwo">
 									<a class="back pull-right btn-floating btn-lg red lighten-1 white-text">X</a>
 									<%
-
+									conn = DriverManager.getConnection(url + dbName, userName, password);
+						try{
 						statement = conn.prepareStatement("SELECT content_id,title,section,content,TRIM(LEADING 'C:fakepath' FROM image)as mypath FROM tbl_content WHERE section='Likes'  Limit 1");
 						resultSet = statement.executeQuery();
 
@@ -207,12 +211,17 @@
 											<h3 class="mt-3"><%= resultSet.getString("title") %></h3><br>	
 											<p><%= resultSet.getString("content") %></p>
 										
-									<%} %>
+									<%} conn.close(); }
+									catch (Exception e) {
+						                e.printStackTrace();
+						            } %>
 									</div>
 									
 									<div class = "tabthree">
 									<a class="back pull-right btn-floating btn-lg red lighten-1 white-text">X</a>
-									<%		
+									<%
+									conn = DriverManager.getConnection(url + dbName, userName, password);
+									try{	
 						statement = conn.prepareStatement("SELECT content_id,title,section,content,TRIM(LEADING 'C:fakepath' FROM image)as mypath FROM tbl_content WHERE section='Look what I can do'  Limit 1");
 						resultSet = statement.executeQuery();
 
@@ -221,13 +230,18 @@
 											<h3 class="mt-3"><%= resultSet.getString("title") %></h3><br>	
 											<p><%= resultSet.getString("content") %></p>
 										
-									<%} %>
+									<%} conn.close();
+									 } catch (Exception e) {
+						                e.printStackTrace();
+						            }%>
+						            
 									</div>
 									
 									<div class = "tabfour">
 									<a class=" back pull-right btn-floating btn-lg red lighten-1 white-text">X</a>
 												<%
-					
+												conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
 						statement = conn.prepareStatement("SELECT content_id,title,section,content,TRIM(LEADING 'C:fakepath' FROM image)as mypath FROM tbl_content WHERE section='Resume'  Limit 1");
 						resultSet = statement.executeQuery();
 
@@ -236,7 +250,12 @@
 											<h3 class="mt-3"><%= resultSet.getString("title") %></h3><br>	
 											<p><%= resultSet.getString("content") %></p>
 										
-									<%} %>
+									<%} 
+									conn.close();
+								 } catch (Exception e) {
+						                e.printStackTrace();
+						            }
+									%>
 									</div>
 		                    	</div>
                         	</div>
@@ -259,7 +278,8 @@
                            <div class="col-md-12" style="margin-top: 3%;">
                                       <div class="row">
 							    <%
-					
+							    conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
 						statement = conn.prepareStatement("SELECT product_id,product_name,product_category,product_description,TRIM(LEADING 'C:fakepath' FROM product_image)as mypath,price,link FROM tbl_products WHERE product_category ='Graphics'");
 						resultSet = statement.executeQuery();
 
@@ -283,14 +303,24 @@
                                                         <!--Text-->
                                                         <p class="card-text"><%= resultSet.getString("product_description") %></p>
 														<h5 class="card-title">PHP <%= resultSet.getString("price") %>.00</h5>
-														<input type="button" class="btn btn-unique btnBuy mx-auto w-100" data-toggle="modal" data-target="#exampleModal" value="Buy" id="<%= resultSet.getString("product_id") %>">
+														<form method="post" action="productcheckout.jsp">
+                                                    	<input type="hidden" name="getProdName" class="form-control" value="<%= resultSet.getString("product_name") %>">
+																<input type="hidden" name="getProdPrice" value="<%= resultSet.getString("price") %>">
+																<input type="hidden" name="getProdImage" value="<%= resultSet.getString("mypath") %>">
+																<input type="hidden" name="getProdDesc" value="<%= resultSet.getString("product_description") %>">
+																<input type="hidden" name="getProdId" value="<%= resultSet.getString("product_id") %>">
+														<input type="submit" class="btn btn-unique btnBuy mx-auto w-100" value="Buy">
+														</form>
                                                     </div>
 
                                                 </div>
                                                 <!--/.Card-->   
 
                                         </div>
-                                         <%} %>
+                                         <%}conn.close();
+                                          } catch (Exception e) {
+                e.printStackTrace();
+            }%>
                                   
 
                                 </div>
@@ -309,7 +339,8 @@
                            <div class="col-md-12">
                                       <div class="row">
 							    <%
-					
+					 conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
 						statement = conn.prepareStatement("SELECT product_id,product_name,product_category,product_description,TRIM(LEADING 'C:fakepath' FROM product_image)as mypath,price,link FROM tbl_products WHERE product_category ='Web'");
 						resultSet = statement.executeQuery();
 
@@ -333,14 +364,23 @@
                                                         <!--Text-->
                                                         <p class="card-text"><%= resultSet.getString("product_description") %></p>
 														<h5 class="card-title">PHP <%= resultSet.getString("price") %>.00</h5>
-														<input type="button" class="btn btn-unique btnBuy mx-auto w-100" data-toggle="modal" data-target="#exampleModal" value="Buy" id="<%= resultSet.getString("product_id") %>">
+														<form method="post" action="productcheckout.jsp">
+                                                    	<input type="hidden" name="getProdName" class="form-control" value="<%= resultSet.getString("product_name") %>">
+																<input type="hidden" name="getProdPrice" value="<%= resultSet.getString("price") %>">
+																<input type="hidden" name="getProdImage" value="<%= resultSet.getString("mypath") %>">
+																<input type="hidden" name="getProdDesc" value="<%= resultSet.getString("product_description") %>">
+																<input type="hidden" name="getProdId" value="<%= resultSet.getString("product_id") %>">
+														<input type="submit" class="btn btn-unique btnBuy mx-auto w-100" value="Buy">
+														</form>
                                                     </div>
 
                                                 </div>
                                                 <!--/.Card-->   
 
                                         </div>
-                                         <%} %>
+                                         <%} conn.close(); } catch (Exception e) {
+                e.printStackTrace();
+            }%>
                                         </div>
 
                                 </div>
@@ -360,7 +400,8 @@ Engineering drawing entails the use of graphical symbols such as points, lines, 
                            <div class="col-md-12" style="margin-top: 3%;">
                                <div class="row">
 							    <%
-					
+							    conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
 						statement = conn.prepareStatement("SELECT product_id,product_name,product_category,product_description,TRIM(LEADING 'C:fakepath' FROM product_image)as mypath,price,link FROM tbl_products WHERE product_category ='CAD'");
 						resultSet = statement.executeQuery();
 
@@ -376,22 +417,33 @@ Engineering drawing entails the use of graphical symbols such as points, lines, 
                                                             <div class="mask"></div>
                                                         </a>
                                                     </div>
-
+ 												
                                                     <!--Card content-->
                                                     <div class="card-body">
+                                                   
                                                         <!--Title-->
                                                         <h4 class="card-title"><%= resultSet.getString("product_name") %></h4>
                                                         <!--Text-->
                                                         <p class="card-text"><%= resultSet.getString("product_description") %></p>
 														<h5 class="card-title">PHP <%= resultSet.getString("price") %>.00</h5>
-														<input type="button	" class="btn btn-unique btnBuy mx-auto w-100" data-toggle="modal" data-target="#exampleModal" value="Buy" id="<%= resultSet.getString("product_id") %>">
+														<form method="post" action="productcheckout.jsp">
+                                                    	<input type="hidden" name="getProdName" class="form-control" value="<%= resultSet.getString("product_name") %>">
+																<input type="hidden" name="getProdPrice" value="<%= resultSet.getString("price") %>">
+																<input type="hidden" name="getProdImage" value="<%= resultSet.getString("mypath") %>">
+																<input type="hidden" name="getProdDesc" value="<%= resultSet.getString("product_description") %>">
+																<input type="hidden" name="getProdId" value="<%= resultSet.getString("product_id") %>">
+														<input type="submit" class="btn btn-unique btnBuy mx-auto w-100" value="Buy">
+														</form>
                                                     </div>
 
                                                 </div>
                                                 <!--/.Card-->   
 
                                         </div>
-                                         <%} %>
+                                         <%}conn.close();
+                                          } catch (Exception e) {
+                e.printStackTrace();
+            }%>
 
                                 </div>
                             </div>
@@ -401,12 +453,6 @@ Engineering drawing entails the use of graphical symbols such as points, lines, 
 
                             
                  </div>
-				 
-			<div id="productdetailssection">
-           
-                    	<div class="row m-0">
-						</div>
-			</div>
            
             </main>
 			

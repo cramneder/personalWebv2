@@ -42,15 +42,24 @@
 
 //$('.mainbuttons').hide();
 $('#cms').hide(); 
+$('#products').hide(); 
+$('#listproducts').hide(); 
 $('#listinquiries').hide();
 $('#listcontent').hide();
-//$('#Back').hide();
-$('.mainbuttons').hide();
+$('#Back').hide();
 
 		$('#work').click(function(){
 			$('.mainbuttons').hide();
 			$('#cms').slideToggle();
 			$('#listcontent').slideToggle();
+			$('#Back').slideToggle();
+			
+		});
+		
+		$('#myproducts').click(function(){
+			$('.mainbuttons').hide();
+			$('#products').slideToggle();
+			$('#listproducts').slideToggle();
 			$('#Back').slideToggle();
 			
 		});
@@ -215,12 +224,16 @@ $('.mainbuttons').hide();
                 <div class="row m-0" id="buttons">
                   <div class="col-md-7 mx-auto">
                     <div class="row m-0">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <img src="images/work.png" class="img-fluid mainbuttons" id="work" alt="CMS">
 
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <img src="images/inquire.png" class="img-fluid mainbuttons" id="inquire" alt="INQUIRIES">
+                        </div>
+                      
+                        <div class="col-md-4">
+                          <img src="images/portfolio.png" class="img-fluid mainbuttons" id="myproducts" alt="PRODUCTS">
                         </div>
                       </div>
                 </div>
@@ -235,7 +248,7 @@ $('.mainbuttons').hide();
                 <div class="row m-0">
                   <div class="col-md-5 mx-auto" id="cms">
                     <!-- Form contact -->
-                      <FORM ENCTYPE="multipart/form-data" ACTION="upload.jsp" METHOD="POST">
+                      <FORM ENCTYPE="multipart/form-data" METHOD="POST">
 
                           <p class="h5 text-center mb-4">Content Manager</p>
 
@@ -288,7 +301,9 @@ $('.mainbuttons').hide();
                             </tr>
                           </thead>
                           <tbody>
-				<%					
+				<%			
+				
+					try{
 						statement = conn.prepareStatement("SELECT content_id,title,section,content,TRIM(LEADING 'C:fakepath' FROM image)as mypath FROM tbl_content");
 						resultSet = statement.executeQuery();
 
@@ -310,8 +325,11 @@ $('.mainbuttons').hide();
 							
 						
 						</tr>
-	
-						<%} %>
+	          <%}conn.close();
+                                          } catch (Exception e) {
+                e.printStackTrace();
+            }%>
+						
                           </tbody>
                         </table>
                                     
@@ -344,7 +362,8 @@ $('.mainbuttons').hide();
                           </thead>
                           <tbody>
 						  				  <%
-					
+						  				conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
 						statement = conn.prepareStatement("SELECT * FROM tbl_inquire");
 						resultSet = statement.executeQuery();
 
@@ -356,7 +375,12 @@ $('.mainbuttons').hide();
                               <td> <%= resultSet.getString("message") %></td>
 							  <td> <%= resultSet.getString("date_inquire") %></td>
                             </tr>
-							<%} %>
+							          <%}conn.close();
+                                          } catch (Exception e) {
+                e.printStackTrace();
+            }%>
+							
+							
                           </tbody>
                         </table>
                                     
@@ -374,7 +398,7 @@ $('.mainbuttons').hide();
 				 <div class="row m-0">
                   <div class="col-md-5 mx-auto" id="products">
                     
-                      <FORM ENCTYPE="multipart/form-data" ACTION="upload.jsp" METHOD="POST">
+                      <FORM ENCTYPE="multipart/form-data"  METHOD="POST">
 
                           <p class="h5 text-center mb-4">Products</p>
 
@@ -437,7 +461,8 @@ $('.mainbuttons').hide();
                           </thead>
                           <tbody>
 				<%
-					
+				conn = DriverManager.getConnection(url + dbName, userName, password);
+				try{
 						statement = conn.prepareStatement("SELECT product_id,product_name,product_category,product_description,TRIM(LEADING 'C:fakepath' FROM product_image)as mypath,price,link FROM tbl_products");
 						resultSet = statement.executeQuery();
 
@@ -462,7 +487,10 @@ $('.mainbuttons').hide();
 						
 						</tr>
 	
-						<%} %>
+						<%}
+						 conn.close(); } catch (Exception e) {
+                e.printStackTrace();
+            }%>
                           </tbody>
                         </table>
                                     

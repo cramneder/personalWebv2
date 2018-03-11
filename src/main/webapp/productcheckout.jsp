@@ -1,11 +1,20 @@
 <%@ page import ="java.sql.*" %>
+<% 
 
+		String prod_name = request.getParameter("getProdName");    
+		String prod_price = request.getParameter("getProdPrice");    
+		String prod_desc = request.getParameter("getProdDesc");
+		String prod_id = request.getParameter("getProdId"); 
+		String prod_image = request.getParameter("getProdImage"); 
+		
+		
+%>
     <!DOCTYPE html>
     <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta charset="utf-8"> 
-            <link rel="stylesheet" href="css/cms.css">
+            <link rel="stylesheet" href="cms/css/cms.css">
             <script type="text/javascript" src="a.min"></script>
              <link rel="stylesheet" href="css/style.css">   
              <link rel="stylesheet" href="css/font-awesome.css">
@@ -76,64 +85,68 @@
 								<h3 class="dark-grey-text mb-5"><strong>Sign in</strong></h3>
 							</div>
 
-							<form method="post" action="loginfunction.jsp">
+							<form method="post" action="insertcheckout.jsp">
 								<div class="row m-0">
 									<div class="col-md-6">
-										<input type="text" name="uname" placeholder="Firstname" class="form-control">
+										<input type="text" name="getFname" id="fname" placeholder="Firstname" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="uname" placeholder="Middlename" class="form-control">
+										<input type="text" name="getMname" id="mname" placeholder="Middlename" class="form-control">
 									</div>
 								</div>
 								<div class="row m-0 mt-2">
 									<div class="col-md-12">
-										<input type="text" name="uname" placeholder="Lastname" class="form-control">
+										<input type="text" name="getLname" id="lname" placeholder="Lastname" class="form-control">
 									</div>
 								</div>
 								<div class="row m-0 mt-2">
 									<div class="col-md-6">
-										<input type="text" name="uname" placeholder="Contact No" class="form-control">
+										<input type="number" name="getContact" id="contact_no" placeholder="Contact No" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="uname" placeholder="Email" class="form-control">
+										<input type="text" name="getEmail" id="email_address" placeholder="Email" class="form-control">
 									</div>
 								</div>
 									<div class="row m-0 mt-2">
 									<div class="col-md-12">
-										<input type="text" name="uname" placeholder="Address" class="form-control">
+										<input type="text" name="getAddress" id="address" placeholder="Address" class="form-control">
 									</div>
 								</div>
 									<div class="row m-0 mt-2">
 									<div class="col-md-12">
-										<input type="text" name="uname" placeholder="Street" class="form-control">
+										<input type="text" name="getStreet" id="street" placeholder="Street" class="form-control">
 									</div>
 								</div>
 								<div class="row m-0 mt-2">
 									<div class="col-md-6">
-									  <select class="mdb-select" id="myproductcategory" name="myproductcategory" style="width:100%; padding:5px; margin-top:1%;margin-bottom:1%;" required/>
+									  <select class="mdb-select" id="city" name="getCity" style="width:100%; padding:5px; margin-top:1%;margin-bottom:1%;" required/>
 										  <option value="" disabled selected>City</option>
-										  <option value="Graphics">Caloocan City</option>
-										  <option value="CAD">Quezon City</option>
-										  <option value="Web">Valenzuela City</option>
+										  <option value="Caloocan City">Caloocan City</option>
+										  <option value="Quezon City">Quezon City</option>
+										  <option value="Valenzuela City">Valenzuela City</option>
 										</select>
 									 </div>
 									 <div class="col-md-6">
-										<input type="text" name="uname" placeholder="Zip Code" class="form-control">
+										<input type="text" name="getZip" id="zip_code" placeholder="Zip Code" class="form-control">
 									</div>
 								 </div>
 								 <div class="row m-0 mt-2">
 									<div class="col-md-6">
-									  <select class="mdb-select" id="myproductcategory" name="myproductcategory" style="width:100%; padding:5px; margin-top:1%;margin-bottom:1%;" required/>
+									  <select class="mdb-select" id="state" name="getState" style="width:100%; padding:5px; margin-top:1%;margin-bottom:1%;" required/>
 										  <option value="" disabled selected>State</option>
-										  <option value="Graphics">Metro Manila</option>
+										  <option value="Metro Manila">Metro Manila</option>
 										</select>
 									 </div>
 									 <div class="col-md-6">
-										<input type="text" name="uname" placeholder="Country Code" class="form-control">
+										<input type="text" name="getCountry" id="country_code" placeholder="Country Code"  value="PH" class="form-control" disabled>
 									</div>
+									<input type="hidden" name="getProdName" value="<%= prod_name %>" id="product_name">
+									<input type="hidden" name="getProdCode" value="<%= prod_id %>" id="product_code">
+									<input type="hidden" name="getProdPrice" value="<%= prod_price %>" id="product_price">
+									<input type="hidden" name="getProdDesc" value="<%= prod_desc %>" id="product_desc">
 								 </div>
 							<div class="text-center mb-3 mt-4">
-								<input type="submit" class="btn btn-primary btn-block btn-rounded z-depth-1a" value="Sign In">
+								<input type="submit" id="btnCheckout" class="btn btn-primary btn-block btn-rounded z-depth-1a" value="Checkout">
 							</div>
 							</form>
 							
@@ -148,24 +161,21 @@
 					<div class="col-md-5 mx-auto" id="productDetails">
 							<div class="card mt-6">
 								<div class="card-body ">
-									<img src="images/sample.jpg" alt="placeholder" class="img-thumbnail img-fluid">
-									<h3>PhotoShoot Package 1</h3>
-									<h6>PHP 1500.00</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+									<img src="cms/images/<%= prod_image %>" alt="placeholder" class="img-thumbnail img-fluid">
+									<h3><%= prod_name %></h3>
+									<h6><%= prod_price %></h3>
+									<p><%= prod_desc %></p>
 								</div>
 							</div>
 					</div>
 				
             
 			</div>
+			
             </main>
                 
         </body>
     </html>
-
-
-
-
 
 
 
