@@ -1,0 +1,33 @@
+ 
+
+.mainbuttons{
+
+	margin-top: 20vh;
+	cursor: pointer;
+
+}
+
+#sectionabout{
+	height: 100vh;
+}
+
+#btnBack,#loginform{
+	margin-top: 25vh;}
+
+#productDetails,#productForm{
+	margin-top: 20vh;
+}
+
+#cms input,#cms textarea,#cms select{
+	margin-top: 2vh;
+	width: 100%;	
+}
+
+
+#cms select{
+	padding: 1%;
+}
+
+#tbl_content td{
+		vertical-align:middle;
+}

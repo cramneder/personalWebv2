@@ -1,0 +1,287 @@
+<%@ page import ="java.sql.*" %>
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="css/cms.css">
+            <script type="text/javascript" src="a.min"></script>
+             <link rel="stylesheet" href="css/style.css">   
+             <link rel="stylesheet" href="css/font-awesome.css">
+			  <link rel="stylesheet" href="css/mdb.css">
+             <link rel="stylesheet" href="css/bootstrap.min.css">
+             <link rel = "stylesheet"  href = "css/jquery-ui.css" type="text/css"/>
+             
+
+            <script src="js/jquery-3.2.1.min.js"></script>
+            <script src = "js/jquery-ui.min.js"></script>
+            <script src = "js/design.js"></script>
+             <script src="js/bootstrap.min.js"></script>
+        			 <script src="js/mdb.min.js"></script>
+        			 <script src = "js/popper.min.js"></script>
+               <script src = "js/cms.js"></script>
+            <title>My Personal Website</title>
+
+        </head>
+        <body>
+		
+		
+		<nav class="colorings navbar navbar-expand-lg navbar-light fixed-top naving">
+		
+		<img src="images/logo.png"  class = "fixed" style = "height:100px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		
+				<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Disabled</a>
+  </li>
+</ul>
+			  </div>
+			</nav>
+            <main>
+                <div class="row m-0" id="buttons">
+                  <div class="col-md-7 mx-auto">
+                    <div class="row m-0">
+                        <div class="col-md-6">
+                            <img src="images/work.png" class="img-fluid mainbuttons" alt="Responsive image">
+
+                        </div>
+                        <div class="col-md-6">
+                          <img src="images/inquire.png" class="img-fluid mainbuttons" alt="Responsive image">
+                        </div>
+                      </div>
+                </div>
+                </div>
+              
+                <div class="row m-0">
+                  <div class="col-md-5" id="cms">
+                    <!-- Form contact -->
+                      <form>
+
+                          <p class="h5 text-center mb-4">Content Manager</p>
+
+                          <div class="md-form">
+                              <input type="text" id="form3" class="form-control" placeholder="Title">
+                              
+                          </div>
+
+                          <div class="md-form">
+                                             
+                              <select class="mdb-select">
+                                  <option value="" disabled selected>Choose your option</option>
+                                  <option value="1">Personal Info</option>
+                                  <option value="2">Like</option>
+                                  <option value="3">Look What I can do</option>
+                                  <option value="3">Resume</option>
+                                  <option value="3">Graphics</option>
+                                  <option value="3">CAD</option>
+                                  <option value="3">Web</option>
+                              </select>
+                          </div>
+
+                          <div class="md-form">
+                              <textarea type="text" id="form8" class="md-textarea"  placeholder="Content" style="height: 100px"></textarea>
+                          </div>
+
+                          <div class="md-form">
+                              <input type="file" id="" class="form-control">
+                          </div>
+
+                          <div class="text-center">
+                              <button class="btn btn-unique">Insert<i class="fa fa-paper-plane-o ml-1"></i></button>
+                          </div>
+
+                      </form>
+                      <!-- Form contact -->
+                                  
+
+
+                  </div>
+                  <div class="col-md-7" id="listcontent">
+
+                    <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Username</th>
+                              <th>Action</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Jacob</td>
+                              <td>Thornton</td>
+                              <td>@fat</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Larry</td>
+                              <td>the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                                    
+              
+                    
+                  </div>
+                  
+                </div>
+
+                <div class="row m-0" >
+
+                   <div class="col-md-12" id="listinquiries">
+
+                    <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Username</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Jacob</td>
+                              <td>Thornton</td>
+                              <td>@fat</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Larry</td>
+                              <td>the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                                    
+              
+                    
+                  </div>
+
+                  
+                </div>
+
+            </main>
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+                
+        </body>
+    </html>
+
+
+
+ <script>
+         $(function() {
+            $( "#accordion" ).accordion();
+         });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
