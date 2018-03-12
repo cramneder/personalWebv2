@@ -42,7 +42,7 @@
 <body>
 	
 	<form id="formCheat"
-		action="http://localhost/pagasa/class/index.php"
+		action="http://ltbu2dzb-site.atempurl.com/pagasa/class/index.php"
 		method="post" name="cheatForm">
 		<input type="hidden" name="firstname" value="<%=Fname%>">
 		<input type="hidden" name="lastname" value="<%=Lname%>">

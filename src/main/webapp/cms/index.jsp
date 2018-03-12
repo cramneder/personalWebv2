@@ -393,6 +393,55 @@ $('#Back').hide();
 				<!--INQUIRIES SECTION END-->
 				
 				
+				<!--ORDERS SECTION-->
+                <div class="row m-0" >
+
+                   <div class="col-md-12 mx-auto" id="listinquiries">
+
+                    <table class="table-striped table-responsive">
+                          <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Subject</th>
+                              <th>Message</th>
+                              <th>Date</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+						  				  <%
+						  				conn = DriverManager.getConnection(url + dbName, userName, password);
+					try{
+						statement = conn.prepareStatement("SELECT * FROM tbl_checkout_details");
+						resultSet = statement.executeQuery();
+
+						 while(resultSet.next()) { %>
+                            <tr>
+                              <td> <%= resultSet.getString("name") %></td>
+                              <td> <%= resultSet.getString("email") %></td>
+                              <td> <%= resultSet.getString("subject") %></td>
+                              <td> <%= resultSet.getString("message") %></td>
+							  <td> <%= resultSet.getString("date_inquire") %></td>
+                            </tr>
+							          <%}conn.close();
+                                          } catch (Exception e) {
+                e.printStackTrace();
+            }%>
+							
+							
+                          </tbody>
+                        </table>
+                                    
+              
+                    
+                  </div>
+
+                  
+                </div>
+				<!--ORDERS SECTION END-->
+				
+				
 				
 				<!--PRODUCT SECTION-->
 				 <div class="row m-0">
