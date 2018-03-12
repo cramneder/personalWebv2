@@ -7,8 +7,8 @@
 					String url = "jdbc:mysql://mysql7002.site4now.net/";
 					String dbName = "ltbu2dzb_personal_db";
 					String driver = "com.mysql.jdbc.Driver";
-					String userName = "ltbu2dzb_one";
-					String password = "one123456";
+					String userName = "ltbu2dzb_two";
+					String password = "two123456";
 						
 						PreparedStatement statement = null;
 						ResultSet resultSet = null;
